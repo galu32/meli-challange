@@ -1,21 +1,21 @@
 module.exports = (server) => {
 
-    const axios = require('axios')
+    const axios = require("axios");
 
     let getCategories = (data) => {
         let categories = data.filters.find(row => {
-            return row.id === 'category'
+            return row.id === "category";
         });
         if (categories) return categories.values;
-        else return []
-    }
+        else return [];
+    };
 
     let getSearchJSON = (data) => {
         return {
             categories: getCategories(data),
             items: data.results.map(item => getItemJSON(item))
-        }
-    }
+        };
+    };
 
     let getItemJSON = (data) => {
         return {
@@ -29,8 +29,8 @@ module.exports = (server) => {
             picture: data.pictures ? data.pictures[0].secure_url : data.thumbnail,
             condition: data.condition,
             free_shipping: data.shipping.free_shipping,
-        }
-    }
+        };
+    };
 
     let getFullItemJSON = async (data) => {
         return {
@@ -40,7 +40,7 @@ module.exports = (server) => {
                 description: await getItemDescription(data.id),
             }
         };
-    }
+    };
 
     let getJSONHeader = () => {
         return {
@@ -48,35 +48,37 @@ module.exports = (server) => {
                 name: "Franco",
                 lastname: "Galuzzi",
             }
-        }
-    }
+        };
+    };
 
     let safeGet = async (url) => {
         try {
-            let {data} = await axios.get(url)
-            return {ok: true, data}
+            let {data} = await axios.get(url);
+            return {ok: true, data};
         } catch (err) {
-            return {ok: false, err}
+            return {ok: false, err};
         }
-    }
+    };
 
     let getItemDescription = async (id) => {
-        let {ok , data, err} = await safeGet(`https://api.mercadolibre.com/items/${id}/description`)
+        // eslint-disable-next-line no-unused-vars
+        let {ok , data, err} = await safeGet(`https://api.mercadolibre.com/items/${id}/description`);
         if (!ok){
             /*handle error*/
+            return "";
         }
-        return data.plain_text
-    }
+        return data.plain_text;
+    };
 
-    server.get('/api/items', async (req,res) => {
-        let {ok, data, err} = await safeGet(`https://api.mercadolibre.com/sites/MLA/search?q=${req.query.q}&limit=4`)
+    server.get("/api/items", async (req,res) => {
+        let {ok, data, err} = await safeGet(`https://api.mercadolibre.com/sites/MLA/search?q=${req.query.q}&limit=4`);
         if (!ok) {
             return res.status(500).send({
                 ok,
                 data,
                 err: "Internal Error"
                 /*JSON.stringify(err)*/
-            })
+            });
         }
         res.status(200).send({
             ok,
@@ -85,18 +87,18 @@ module.exports = (server) => {
                 ...getSearchJSON(data)
             },
             err
-        })
-    })
+        });
+    });
 
-    server.get('/api/items/:id', async (req,res) => {
-        let {ok, data, err} = await safeGet(`https://api.mercadolibre.com/items/${req.params.id}`)
+    server.get("/api/items/:id", async (req,res) => {
+        let {ok, data, err} = await safeGet(`https://api.mercadolibre.com/items/${req.params.id}`);
         if (!ok) {
             return res.status(500).send({
                 ok,
                 data,
                 err: "Internal Error"
                 /*JSON.stringify(err)*/
-            })
+            });
         }
         res.status(200).send({
             ok,
@@ -105,7 +107,7 @@ module.exports = (server) => {
                 ...(await getFullItemJSON(data))
             },
             err
-        })
-    })
+        });
+    });
 
-}
+};

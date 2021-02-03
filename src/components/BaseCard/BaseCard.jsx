@@ -1,13 +1,18 @@
-import {card} from './BaseCard.module.css'
+import {card} from "./BaseCard.module.css";
+import PropTypes from "prop-types";
 
 const BaseCard = ({children}) => {
-  return (
-    <div className={card}>
-      <>
-        {children}
-      </>
-    </div>
-  )
-}
+    return (
+        <div className={card}>
+            <>
+                {children}
+            </>
+        </div>
+    );
+};
 
-export default BaseCard
+BaseCard.propTypes = {
+    children: PropTypes.any
+};
+
+export default BaseCard;

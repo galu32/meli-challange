@@ -1,26 +1,28 @@
-import dynamic from 'next/dynamic'
-import axios from 'axios'
+import dynamic from "next/dynamic";
+import axios from "axios";
+import PropTypes from "prop-types";
 
-let NavBar = dynamic(() => import('../../components/NavBar/NavBar'))
-let BaseCard = dynamic(() => import('../../components/BaseCard/BaseCard'))
-let ItemPreview = dynamic(() => import('../../components/ItemPreview/ItemPreview'))
-let BaseContainer = dynamic(() => import('../../components/BaseContainer/BaseContainer'))
+let NavBar = dynamic(() => import("../../components/NavBar/NavBar"));
+let BaseCard = dynamic(() => import("../../components/BaseCard/BaseCard"));
+let ItemPreview = dynamic(() => import("../../components/ItemPreview/ItemPreview"));
+let BaseContainer = dynamic(() => import("../../components/BaseContainer/BaseContainer"));
 
 const ItemOverview = ({data}) => {
-  return (
+    return (
         <BaseContainer>
             <NavBar/>
             <BaseCard>
                 <ItemPreview data={data}/>
             </BaseCard>
         </BaseContainer>
-  )
+    );
 
-}
+};
 
 export const getServerSideProps = async ({query}) => {
-    let {id} = query
-    let res = await axios.get(`http://localhost:3000/api/items/${id}`)
+    let {id} = query;
+    let res = await axios.get(`http://localhost:3000/api/items/${id}`);
+    // eslint-disable-next-line no-unused-vars
     let {ok, data, err} = res.data;
     if (!ok){
         /*handle error*/
@@ -29,7 +31,11 @@ export const getServerSideProps = async ({query}) => {
         props: {
             data
         }
-    }
-  }
+    };
+};
 
-export default ItemOverview
+ItemOverview.propTypes = {
+    data: PropTypes.object,
+};
+
+export default ItemOverview;
