@@ -1,0 +1,30 @@
+.card {
+    background-color: white;
+    width: 63%;
+    height: 80%;
+    overflow: auto;
+    overflow-x: hidden;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+
+}
+
+.card::-webkit-scrollbar {
+    width: 0.2em;
+}
+
+.card::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
+
+@media (max-width: 480px) {
+    .card {
+        height: 60%;
+        margin-top: 25%;
+    }
+    /* .container {
+        height: 38rem;
+    } */
+}
