@@ -1,0 +1,21 @@
+.breadcrumb {
+    margin-top: 0.5%;
+    margin-left: 18.5%;
+    display: inline-block;
+}
+
+.breadcrumb-text{
+    display: inline;
+}
+
+@media (max-width: 480px) {
+    .breadcrumb {
+        margin-top: 2%;
+        margin-left: 10%;
+    }
+    
+    .breadcrumb-text {
+        font-size: x-small
+    }
+
+}

@@ -9,8 +9,9 @@
 }
 
 .search-box {
-    width: 55%;
-    height: 2rem
+    width: 54%;
+    height: 2rem;
+    padding-left: 1%;
 }
 
 .logo {
@@ -22,5 +23,11 @@
 .search-button {
     color: rgb(211,211,211);
     margin-left: 0;
-    height: 2rem;
+    height: 80%;
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 13vw;
+    }
 }

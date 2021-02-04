@@ -25,7 +25,7 @@
 }
 
 .item-row:hover {
-    background-color: grey
+    background-color: rgb(187, 187, 187)
   }
 
 .item-row-container {
@@ -34,6 +34,7 @@
     margin-left: 2%;
     width: 80%;
     max-width: 80%;
+    margin-top: 3%;
     /* margin-right: 25%; */
 }
 
@@ -44,6 +45,9 @@
     }
     .item-row-name {
         font-size: 1.5vh;
+    }
+    .item-row-price{
+        font-size: 3vh;
     }
     .item-row-img {
         width:30%

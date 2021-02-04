@@ -1,18 +1,19 @@
-import "@fortawesome/fontawesome-free/css/all.min.css"; import
-"bootstrap-css-only/css/bootstrap.min.css"; import
-"mdbreact/dist/css/mdb.css";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {useState} from "react";
-
-import { MDBBtn, MDBIcon } from "mdbreact";
+import PropTypes from "prop-types";
 import styles from "./NavBar.module.css";
 
-const NavBar = () => {
+const NavBar = ({lastSearch}) => {
 
-    let [query, setQuery] = useState("");
+    let [query, setQuery] = useState(lastSearch || "");
 
     let handleClick = () => {
-        window.location = `/items?search=${query}`;
+        if (query.startsWith("MLA"))
+            window.location = `/items/${query}`;
+        else
+            window.location = `/items?search=${query}`;
     };
 
     let handleKeyDown = (e) => {
@@ -29,13 +30,17 @@ const NavBar = () => {
 
     return (
         <div className={styles.navbar} >
-            <img className={styles.logo} src='/meli.png' href='/'/>
+            <img className={styles.logo} src='/meli.png' onClick={()=>{window.location = "/";}}/>
             <input placeholder='Nunca dejes de buscar' className={styles["search-box"]} value={query} onChange={handleOnChange} onKeyDown={handleKeyDown}/>
-            <MDBBtn className={styles["search-button"]} size="sm" onClick={() => handleClick()}>
-                <MDBIcon icon="search" />
-            </MDBBtn>
+            <button className={styles["search-button"]} size="sm" onClick={() => handleClick()}>
+                <FontAwesomeIcon icon={faSearch} />
+            </button>
         </div>
     );
+};
+
+NavBar.propTypes = {
+    lastSearch: PropTypes.string
 };
 
 export default NavBar;

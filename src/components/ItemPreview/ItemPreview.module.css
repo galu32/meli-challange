@@ -24,7 +24,9 @@
 .item-box-btn {
     display: inline-block;
     width: 100%;
-    background-color: blue;
+    height: 5vh;
+    background-color:rgb(65,105,225);
+    color: white;
 }
 
 .item-box-pricing {
@@ -48,7 +50,7 @@
 
 @media screen and (max-width: 480px) {
     .item-img {
-        width: 60vw;
+        width: 98%;
         height: 40%;
         margin-top: 1%
     }
@@ -59,5 +61,8 @@
     }
     .item-box-pricing {
         position: relative;
+    }
+    .item-box-btn {
+        width: 90%;
     }
 }

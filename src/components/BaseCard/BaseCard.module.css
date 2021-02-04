@@ -1,10 +1,11 @@
 .card {
     background-color: white;
     width: 63%;
-    height: 80%;
+    height: 85vh;
     overflow: auto;
     overflow-x: hidden;
     margin: auto;
+    margin-top: 10vh;
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
 
@@ -21,8 +22,9 @@
 
 @media (max-width: 480px) {
     .card {
-        height: 60%;
-        margin-top: 25%;
+        height: 80vh;
+        width: 85vw;
+        margin-top: 15vh;
     }
     /* .container {
         height: 38rem;
