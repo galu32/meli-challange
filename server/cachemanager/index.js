@@ -25,10 +25,10 @@ const renderFromCache = async (app, req, res, path, qs, shouldSend, shouldCache)
             cacheManager.set(req.url,html);
             if (shouldSend) res.send(html);
         } catch (e) {
-            res.setHeader("x-cache", "enabled");
             app.renderError(e, req, res, path, qs);
         }
     } else {
+        res.setHeader("x-cache", "enabled");
         res.send(cacheManager.get(req.url));
     }
 };
@@ -65,11 +65,27 @@ const getCategory = (id) => {
     return cacheManager.get(`CATEGORY::${id}`);
 };
 
+const getKeys = () => {
+    return cacheManager.keys();
+};
+
+const delKey = (key) => {
+    try{
+        cacheManager.del(key);
+        return true;
+    } catch (e) {
+        return false;
+    }
+};
+
 module.exports = {
     renderFromCache,
+    hasItem,
     setItem,
     getItem,
     serveItemFromCache,
     setCategory,
-    getCategory
+    getCategory,
+    getKeys,
+    delKey
 };

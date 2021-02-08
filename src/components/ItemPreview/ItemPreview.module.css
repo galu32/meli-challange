@@ -40,6 +40,10 @@
     word-wrap: break-word; 
 }
 
+.item-box-title {
+    font-weight: normal;
+}
+
 .item-description {
     word-wrap: break-word;
     max-width: 100%;
@@ -48,7 +52,7 @@
     margin-right: 1%;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 690px) {
     .item-img {
         width: 98%;
         height: 40%;

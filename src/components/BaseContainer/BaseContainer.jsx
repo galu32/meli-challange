@@ -14,6 +14,7 @@ const BaseContainer = ({children, extraKeywords}) => {
         <div className={container}>
             <Head>
                 <title>Meli Challenge</title>
+                
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <meta charSet="utf-8"/>
                 <meta name="description" content="Mercado Libre Challenge - Franco Galuzzi"/>

@@ -1,6 +1,8 @@
 const cfg = require("./config");
 const {devMode} = cfg.webserver;
 
+const initPromise = require("bluebird").pending();
+
 if (!devMode){
     const fs = require("fs-extra");
     const exec = require("child_process").spawn;
@@ -29,11 +31,21 @@ if (!devMode){
         fs.move("./.next/", "./src/.next/", err => {
             if(err) return console.error(err);
             console.log("starting app..");
-            require("./server");
+            let {serverPromise} = require("./server");
+            serverPromise.then(() => {
+                initPromise.resolve();
+            });
         });
     });
 
 } else {
     console.log("building dev app.. please wait..");
-    require("./server");
+    let {serverPromise} = require("./server");
+    serverPromise.then(() => {
+        initPromise.resolve();
+    });
 }
+
+module.exports = {
+    initPromise: initPromise.promise
+};

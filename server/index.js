@@ -1,14 +1,13 @@
 const express = require("express");
 const next = require("next");
-
 const cfg = require("../config");
-
 const {port, devMode} = cfg.webserver;
 
 const app = next({ dev: devMode, dir: "./src" });
 const handle = app.getRequestHandler();
-
 const {renderFromCache} = require("./cachemanager");
+
+const serverPromise = require("bluebird").pending();
 
 app.prepare().then(() => {
 
@@ -53,6 +52,11 @@ app.prepare().then(() => {
     server.listen(port, (err) => {
         if (err) throw err;
         console.log(`> Ready on http://localhost:${port}`);
+        serverPromise.resolve(true);
     });
 
 });
+
+module.exports = {
+    serverPromise: serverPromise.promise
+};

@@ -4,7 +4,7 @@
   "description": "meli challenge",
   "main": "./index.es6",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env NODE_ENV=test mocha --timeout 10000 'server/**/*.test.js' 'src/**/*.test.js'",
     "start": "node index.js"
   },
   "author": "Franco Galuzzi",
@@ -14,6 +14,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
+    "bluebird": "^3.7.2",
     "express": "^4.17.1",
     "fs-extra": "^9.1.0",
     "lru-cache": "^6.0.0",
@@ -23,7 +24,14 @@
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.13",
+    "@babel/register": "^7.12.13",
+    "assert": "^2.0.0",
+    "cross-env": "^7.0.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.19.0",
-    "eslint-plugin-react": "^7.22.0"
+    "eslint-plugin-react": "^7.22.0",
+    "mocha": "^8.2.1"
   }
 }

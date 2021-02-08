@@ -1,6 +1,7 @@
 {
     "webserver": {
         "port": 3000,
-        "devMode": true
+        "devMode": false,
+        "api_url": "localhost"
     }
 }
