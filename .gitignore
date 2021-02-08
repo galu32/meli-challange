@@ -1,3 +1,4 @@
 node_modules
 src/.next
 .next
+package-lock.json
