@@ -39,6 +39,11 @@
     /* margin-right: 25%; */
 }
 
+.item-row-free-shipping {
+    margin-left: 1%;
+    color: green;
+}
+
 @media (max-width: 480px) {
     .item-row-container {
         max-width: 60%;
