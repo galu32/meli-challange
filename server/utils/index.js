@@ -25,7 +25,7 @@ let utils = {
     },
 
     /**
-    * @name getCategories
+    * @name getSearchJSON
     * @description retrieves items JSON from meli API response
     * @param {object} data meli items API response
     * @return {object}
@@ -61,7 +61,7 @@ let utils = {
     },
 
     /**
-    * @name getCategories
+    * @name getFullItemJSON
     * @description retrieves item JSON with sold_quantity and description from meli API response
     * @param {object} data meli items API response
     * @return {object}
@@ -78,7 +78,7 @@ let utils = {
     },
 
     /**
-    * @name getCategories
+    * @name getJSONHeader
     * @description retrieves default JSON header for API responses
     * @return {object}
     */
@@ -93,7 +93,7 @@ let utils = {
     },
 
     /**
-    * @name getCategories
+    * @name safeGet
     * @description catch error in request
     * @param {string} url url to request
     * @return {object}
@@ -109,7 +109,7 @@ let utils = {
     },
 
     /**
-    * @name getCategories
+    * @name getItemDescription
     * @description retrieves item description from meli API
     * @param {string} id meli item id
     * @return {string}
