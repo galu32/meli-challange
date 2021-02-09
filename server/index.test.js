@@ -169,7 +169,4 @@ describe("cachemanager test", function(){
 
 });
 
-//@TODO ver el testsuite de la ui, si despues de este test, mato el proceso entonces ya la ui no puede consumir el api, si no mato el proceso queda bug EADDRINUSE, ps aux | grep node && pkill node
-//@TODO ver como modular el archivo, cada suite es independiente del otro, pero si los modulo me los ejecuta en cualquier orden y no esperan el initPromise
-
 after(() => process.exit(0));

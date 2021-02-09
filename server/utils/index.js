@@ -3,6 +3,14 @@ const {API_URL} = require("../constants");
 
 let utils = {
 
+    /**
+    * @name getCategories
+    * @description retrieves categories from meli API response
+    * @param {object} data meli items API response
+    * @param {boolean} onlyPath retrieves only string
+    * @return {array}
+    */
+
     getCategories: (data, onlyPath) => {
         if (onlyPath) {
             return data.map(r => r.name);
@@ -16,12 +24,26 @@ let utils = {
         else return [];
     },
 
+    /**
+    * @name getCategories
+    * @description retrieves items JSON from meli API response
+    * @param {object} data meli items API response
+    * @return {object}
+    */
+
     getSearchJSON: (data) => {
         return {
             categories: utils.getCategories(data),
             items: data.results.map(item => utils.getItemJSON(item))
         };
     },
+
+    /**
+    * @name getCategories
+    * @description retrieves item JSON from meli API response
+    * @param {object} data meli items API response
+    * @return {object}
+    */
 
     getItemJSON: (data) => {
         return {
@@ -38,6 +60,13 @@ let utils = {
         };
     },
 
+    /**
+    * @name getCategories
+    * @description retrieves item JSON with sold_quantity and description from meli API response
+    * @param {object} data meli items API response
+    * @return {object}
+    */
+
     getFullItemJSON: async (data) => {
         return {
             item: {
@@ -48,6 +77,12 @@ let utils = {
         };
     },
 
+    /**
+    * @name getCategories
+    * @description retrieves default JSON header for API responses
+    * @return {object}
+    */
+
     getJSONHeader: () => {
         return {
             author: {
@@ -57,6 +92,13 @@ let utils = {
         };
     },
 
+    /**
+    * @name getCategories
+    * @description catch error in request
+    * @param {string} url url to request
+    * @return {object}
+    */
+
     safeGet: async (url) => {
         try {
             let {data} = await axios.get(url);
@@ -65,6 +107,13 @@ let utils = {
             return {ok: false, err};
         }
     },
+
+    /**
+    * @name getCategories
+    * @description retrieves item description from meli API
+    * @param {string} id meli item id
+    * @return {string}
+    */
 
     getItemDescription: async (id) => {
         // eslint-disable-next-line no-unused-vars

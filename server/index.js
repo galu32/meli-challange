@@ -12,8 +12,9 @@ const serverPromise = require("bluebird").pending();
 app.prepare().then(() => {
 
     const server = express();
-
-    require("./api/")(server);
+    let apiRouter = express.Router();
+    server.use("/api", apiRouter);
+    require("./api/")(apiRouter);
 
     server.get("/_next/*", (req,res) => {
         handle(req,res);
